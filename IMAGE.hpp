@@ -35,6 +35,8 @@ private:
 
 	bool IsLoad;			//読み込めたか？
 
+	bool IsDraw;			//描画してもよい？
+
 public:
 	IMAGE(const char*, const char*);		//コンストラクタ
 	IMAGE();
