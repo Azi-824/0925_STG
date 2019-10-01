@@ -3,7 +3,7 @@
 
 //************ ヘッダーファイル読み込み **************
 #include "ANIMATION.hpp"
-#include"FPS.hpp"
+#include "FPS.hpp"
 
 //********** クラスの定義 ******************
 
@@ -17,7 +17,7 @@
 //引数:int:画像の分割された縦の大きさ
 //引数:double:次の画像に変更する速さ
 //引数:bool:アニメーションをループするかどうか
-ANIMATION::ANIMATION(const char*dir, const char*name, int SplitNumALL, int SpritNumX, int SpritNumY, int SpritWidth, int SpritHeight, double ChangeSpeed, bool IsLoop)
+ANIMATION::ANIMATION(const char *dir, const char *name, int SplitNumALL, int SpritNumX, int SpritNumY, int SpritWidth, int SpritHeight, double ChangeSpeed, bool IsLoop)
 {
 	//メンバ変数を初期化
 	this->FilePath = "";	//パス
@@ -94,7 +94,7 @@ ANIMATION::~ANIMATION()
 	}
 
 	//vectorのメモリ開放を行う
-	std::vector<int>v;			//空のvectorを作成する
+	std::vector<int> v;			//空のvectorを作成する
 	this->Handle.swap(v);		//空と中身を入れ替える
 
 	return;
@@ -149,4 +149,37 @@ bool ANIMATION::GetIsLoad(void)
 }
 
 //画像を描画
+void ANIMATION::Draw(void)
+{
+	if (this->IsDraw == true)	//描画してよいなら
+	{
+		DrawGraph(this->X, this->Y, *this->Handle_itr, TRUE);	//イテレータ(ポインタ)を使用して描画
 
+		if (this->ChangeCnt == this->ChangeMaxCnt)	//次の画像を表示するときがきたら
+		{
+			//this->Handle.end()は、最後の要素の1個次のイテレータを返すので、-1している。
+			if (this->Handle_itr == this->Handle.end() - 1)	//イテレータ(ポインタ)が最後の要素のときは
+			{
+				if (this->IsAnimeLoop == false)	//アニメーションループしないなら
+				{
+					this->IsDraw = false;		//描画をやめる
+				}
+
+				//次回の描画に備えて、先頭の画像に戻しておく
+				this->Handle_itr = this->Handle.begin();		//イテレータ(ポインタ)を要素の最初に戻す
+
+			}
+			else
+			{
+				this->Handle_itr++;		//次のイテレータ(ポインタ)(次の画像)に移動する
+			}
+
+			this->ChangeCnt = 0;		//カウント初期化
+		}
+		else
+		{
+			this->ChangeCnt++;			//カウントアップ
+		}
+	}
+	return;
+}

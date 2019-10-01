@@ -4,7 +4,7 @@
 #include "IMAGE.hpp"
 #include"FPS.hpp"
 //#include "KEYDOWN.hpp"
-//#include "ANIMATION.hpp"
+#include "ANIMATION.hpp"
 //#include "CHARACTOR.hpp"
 
 //*********** グローバルオブジェクト ***********
@@ -29,8 +29,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	IMAGE *jiki = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_1);
 	if (jiki->GetIsLoad() == FALSE) { return -1; };	//画像読み込みチェック
 
-	//ANIMATION *baku = new ANIMATION(MY_IMG_DIR_BAKU,MY_ANIME_NAME_BAKU_1,16,16,1,BAKU_1_WIDTH,BAKU_1_HEIGHT,0.05,true);
-	//if (baku->GetIsLoad() == false) {return -1; };//画像読み込みチェック
+	ANIMATION *baku = new ANIMATION(MY_ANIME_DIR_BAKU,MY_ANIME_NAME_BAKU_1,16,16,1, BAKU_1_HEIGHT,BAKU_1_HEIGHT,0.05,true);
+	if (baku->GetIsLoad() == false) {return -1; };//画像読み込みチェック
 
 
 	while (TRUE)		//無限ループ
@@ -44,6 +44,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		//▼▼▼▼▼▼▼ ゲームのシーンここから ▼▼▼▼▼▼▼▼
 
 		jiki->Draw();
+		baku->Draw();
 		
 
 		//▲▲▲▲▲▲▲　ゲームのシーンここまで ▲▲▲▲▲▲▲▲
@@ -57,6 +58,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	delete jiki;			//jikiを破棄
+	delete baku;			//bakuを破棄
 
 	delete fps;				//fpsを破棄
 

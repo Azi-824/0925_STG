@@ -10,9 +10,9 @@
 #include <vector>
 
 //********* マクロ定義:画像のファイルパスと名前 ************
-#define MY_ANIME_DIT_BAKU				R"(.\MY_ANIME\bakuhatsu\)"		//爆発の画像ファイルの場所
+#define MY_ANIME_DIR_BAKU				R"(.\MY_ANIME\bakuhatsu\)"		//爆発の画像ファイルの場所
 
-#define MY_ANIME_NAME_BAKU_1			R"(bakuhatsu_01_png)"			//爆発の画像の名前
+#define MY_ANIME_NAME_BAKU_1			R"(bakuhatsu_01.png)"			//爆発の画像の名前
 #define BAKU_1_WIDTH	70		//分割する幅の大きさ
 #define BAKU_1_HEIGHT	64		//分割する高さの大きさ
 
