@@ -145,11 +145,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ANIMATION.cpp" />
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="IMAGE.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ANIMATION.hpp" />
     <ClInclude Include="FPS.hpp" />
     <ClInclude Include="IMAGE.hpp" />
     <ClInclude Include="main.hpp" />

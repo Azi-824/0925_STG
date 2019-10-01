@@ -65,7 +65,7 @@ IMAGE::IMAGE(const char *dir, const char *name)
 }
 
 //デストラクタ
-IMAGE::IMAGE()
+IMAGE::~IMAGE()
 {
 	DeleteGraph(this->Handle);		//読み込んだ画像を削除
 	return;

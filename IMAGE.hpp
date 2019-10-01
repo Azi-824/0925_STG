@@ -39,7 +39,7 @@ private:
 
 public:
 	IMAGE(const char*, const char*);		//コンストラクタ
-	IMAGE();
+	virtual ~IMAGE();						//デストラクタ
 
 	std::string GetFileName(void);			//名前を取得
 

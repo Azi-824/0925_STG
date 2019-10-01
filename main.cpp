@@ -3,9 +3,13 @@
 #include "main.hpp"
 #include "IMAGE.hpp"
 #include"FPS.hpp"
+//#include "KEYDOWN.hpp"
+//#include "ANIMATION.hpp"
+//#include "CHARACTOR.hpp"
 
 //*********** グローバルオブジェクト ***********
-FPS *fps = new(GAME_FPS_SPEED);
+FPS *fps = new FPS(GAME_FPS_SPEED);
+//KEYDOWN *keydown = new KEYDOWN();
 
 
 //*********** プログラムで最初に実行される関数 ***************
@@ -25,6 +29,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	IMAGE *jiki = new IMAGE(MY_IMG_DIR_JIKI, MY_IMG_NAME_JIKI_1);
 	if (jiki->GetIsLoad() == FALSE) { return -1; };	//画像読み込みチェック
 
+	//ANIMATION *baku = new ANIMATION(MY_IMG_DIR_BAKU,MY_ANIME_NAME_BAKU_1,16,16,1,BAKU_1_WIDTH,BAKU_1_HEIGHT,0.05,true);
+	//if (baku->GetIsLoad() == false) {return -1; };//画像読み込みチェック
+
+
 	while (TRUE)		//無限ループ
 	{
 		if (ProcessMessage() != 0) { break; }	//メッセージ処理の結果がエラーの時、強制終了
@@ -35,10 +43,24 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		//▼▼▼▼▼▼▼ ゲームのシーンここから ▼▼▼▼▼▼▼▼
 
-
+		jiki->Draw();
+		
 
 		//▲▲▲▲▲▲▲　ゲームのシーンここまで ▲▲▲▲▲▲▲▲
+
+		fps->Draw(0, 0);				//FPSの処理(描画)
+
+		ScreenFlip();					//モニタのリフレッシュレートの速さで裏画面を再描画
+
+		fps->Wait();					//FPSの処理(待つ)
+
 	}
+
+	delete jiki;			//jikiを破棄
+
+	delete fps;				//fpsを破棄
+
+	DxLib_End();			//DXライブラリ使用の終了処理
 
 	return 0;
 }
